@@ -1,0 +1,94 @@
+/* General Background to match the DAPI site */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* The Main Card Container */
+.digimon-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+/* The "ID" number at the top */
+.id-badge {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+/* The Name Header */
+.digimon-name {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #212529;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+}
+
+/* The Image Container */
+.digimon-image {
+    max-width: 220px;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+/* Stats Section Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #444;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Fields Area */
+.field-section-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Field Icons with Hover Effect */
+.field-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 4px;
+    cursor: help;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.field-icon:hover {
+    transform: scale(1.3) rotate(5deg);
+}
+.stats-grid .col-4 {
+    /* Ensures the columns have enough room for the words */
+    min-width: 80px; 
+}
+
+.stat-value {
+    /* Keeps the text on one line */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
