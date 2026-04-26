@@ -1,94 +1,182 @@
-/* General Background to match the DAPI site */
-body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Sidebar - Light Cyan Theme */
+.sidebar-card {
+    background-color: #97e8f3; /* Matching your cyan theme */
+    border-radius: 30px;
+    padding: 40px 25px;
+    color: #2c5d63;
+    box-shadow: 0 10px 25px rgba(151, 232, 243, 0.3);
+    text-align: center;
 }
 
-/* The Main Card Container */
-.digimon-card {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+.sidebar-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #2c5d63 !important;
+}
+
+/* Input Fields */
+.sidebar-card .form-control, 
+.sidebar-card .form-select {
     border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+}
+
+/* Action Buttons */
+.btn-clear {
+    background: transparent;
+    border: 1.5px solid #2c5d63;
+    color: #2c5d63;
+    border-radius: 12px;
+    font-weight: bold;
+    padding: 10px 25px;
+}
+
+.btn-search {
+    background-color: #4c8da0;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    padding: 10px 25px;
+    box-shadow: 0 4px 0 #366775; /* The button 'depth' from your UI */
+}
+
+/* Attribute-Specific Colors (Used in JS attrClass) */
+.bg-info.text-dark {
+    background-color: #00cfe8 !important; /* The Vaccine Cyan from your screenshot */
+    color: white !important;
+}
+
+.bg-danger {
+    background-color: #ff4d4d !important; /* Virus Red */
+}
+
+.bg-success {
+    background-color: #4ade80 !important; /* Data Green */
+}
+
+/* The List Item (Horizontal Card) */
+/* Main Results Area */
+.results-container {
+    background-color: white;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+/* Horizontal Digimon Row */
+.digi-list-card {
+    background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%);
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    margin-bottom: 15px;
     transition: transform 0.2s ease;
 }
 
-/* The "ID" number at the top */
-.id-badge {
-    color: #888;
-    font-size: 0.85rem;
-    margin-bottom: 4px;
+.digi-list-card:hover {
+    transform: translateX(10px);
+    border-color: #97e8f3;
 }
 
-/* The Name Header */
-.digimon-name {
-    font-weight: 800;
-    font-size: 1.8rem;
-    color: #212529;
-    border-bottom: 2px solid #333;
-    display: inline-block;
-    padding-bottom: 4px;
-    margin-bottom: 20px;
+.digi-number {
+    color: #adb5bd;
+    font-weight: bold;
+    margin-right: 20px;
 }
 
-/* The Image Container */
-.digimon-image {
-    max-width: 220px;
-    height: auto;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
-}
-
-/* Stats Section Grid */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.stat-label {
-    display: block;
+.digi-name {
     font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #444;
+    font-size: 1.25rem;
+    flex-grow: 1;
 }
 
-.stat-value {
-    display: block;
-    font-size: 1rem;
-    color: #666;
+/* The Icon Box on the Right */
+.digi-img-box {
+    background: linear-gradient(135deg, #a78bfa 0%, #4ade80 100%);
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Fields Area */
-.field-section-title {
-    font-size: 0.85rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-    text-transform: uppercase;
+.digi-img-box img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
-
-/* Field Icons with Hover Effect */
-.field-icon {
-    width: 32px;
-    height: 32px;
-    margin: 0 4px;
-    cursor: help;
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.field-icon:hover {
-    transform: scale(1.3) rotate(5deg);
-}
-.stats-grid .col-4 {
-    /* Ensures the columns have enough room for the words */
-    min-width: 80px; 
-}
-
-.stat-value {
-    /* Keeps the text on one line */
-    white-space: nowrap;
+/* The Image Container on the far right */
+.img-container {
+    background: linear-gradient(135deg, #a78bfa 0%, #4ade80 100%);
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.img-container img {
+    max-width: 90%;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Detail Card Styling */
+.digimon-detail-card {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #f0f0f0;
+}
+
+.stat-pill .badge {
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+#homeBtn {
+    background-color: #5d5d5d; /* Dark grey from your screenshot */
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 8px 25px;
+}
+
+#homeBtn:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* Attribute Badge Colors */
+.badge-vaccine { background-color: #00cfe8 !important; color: white; }
+.badge-data { background-color: #4ade80 !important; color: white; }
+.badge-virus { background-color: #ff4d4d !important; color: white; }
+.badge-free { background-color: #6c757d !important; color: white; }
+.badge-variable { background-color: #a78bfa !important; color: white; }
+
+/* Sidebar Button Polish */
+.btn-clear {
+    border: 1.5px solid #2c5d63;
+    color: #2c5d63;
+    transition: all 0.2s;
+}
+
+.btn-clear:hover {
+    background-color: rgba(44, 93, 99, 0.1);
+    color: #2c5d63;
+}
+
+.btn-search {
+    background-color: #4c8da0;
+    color: white;
+    border-bottom: 4px solid #366775;
 }
