@@ -1,6 +1,5 @@
-/* Sidebar - Light Cyan Theme */
 .sidebar-card {
-    background-color: #97e8f3; /* Matching your cyan theme */
+    background-color: #97e8f3;
     border-radius: 30px;
     padding: 40px 25px;
     color: #2c5d63;
@@ -41,32 +40,29 @@
     border-radius: 12px;
     font-weight: bold;
     padding: 10px 25px;
-    box-shadow: 0 4px 0 #366775; /* The button 'depth' from your UI */
+    box-shadow: 0 4px 0 #366775; 
 }
 
-/* Attribute-Specific Colors (Used in JS attrClass) */
 .bg-info.text-dark {
-    background-color: #00cfe8 !important; /* The Vaccine Cyan from your screenshot */
+    background-color: #00cfe8 !important; 
     color: white !important;
 }
 
 .bg-danger {
-    background-color: #ff4d4d !important; /* Virus Red */
+    background-color: #ff4d4d !important; 
 }
 
 .bg-success {
-    background-color: #4ade80 !important; /* Data Green */
+    background-color: #4ade80 !important; 
 }
 
-/* The List Item (Horizontal Card) */
-/* Main Results Area */
+
 .results-container {
     background-color: white;
     border-radius: 30px;
     padding: 30px;
 }
 
-/* Horizontal Digimon Row */
 .digi-list-card {
     background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%);
     border: 1px solid #f0f0f0;
@@ -95,7 +91,7 @@
     flex-grow: 1;
 }
 
-/* The Icon Box on the Right */
+
 .digi-img-box {
     background: linear-gradient(135deg, #a78bfa 0%, #4ade80 100%);
     width: 70px;
@@ -111,7 +107,7 @@
     height: 50px;
     object-fit: contain;
 }
-/* The Image Container on the far right */
+
 .img-container {
     background: linear-gradient(135deg, #a78bfa 0%, #4ade80 100%);
     width: 70px;
@@ -143,7 +139,7 @@
     text-transform: capitalize;
 }
 #homeBtn {
-    background-color: #5d5d5d; /* Dark grey from your screenshot */
+    background-color: #5d5d5d; 
     border: none;
     font-size: 0.9rem;
     font-weight: 600;

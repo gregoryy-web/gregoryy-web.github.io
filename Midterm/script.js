@@ -1,22 +1,18 @@
-// DOM Element Selectors
 const searchSubmitBtn = document.getElementById('searchSubmitBtn');
-const clearBtn = document.getElementById('clearBtn'); // Ensure this ID exists in your HTML
+const clearBtn = document.getElementById('clearBtn'); 
 const digimonSearchInput = document.getElementById('digimonSearchInput');
 const digimonCardResult = document.getElementById('digimonCardResult');
 const typeFilter = document.getElementById('typeFilter');
 const homeBtn = document.getElementById('homeBtn');
 
-// This will store our current list for filtering
 let currentDigimonList = [];
 
-/**
- * Fetches initial list and stores it for filtering
- */
+
 async function fetchInitialList() {
     try {
         const response = await fetch('https://digi-api.com/api/v1/digimon?pageSize=20');
         const data = await response.json();
-        currentDigimonList = data.content; // Save to global variable
+        currentDigimonList = data.content; 
         renderDigimonList(currentDigimonList);
     } catch (error) {
         console.error("Error fetching initial list:", error);
@@ -24,31 +20,23 @@ async function fetchInitialList() {
     }
 }
 
-/**
- * Handles the combined Search (Name + Attribute)
- */
 async function handleSearch() {
     const searchTerm = digimonSearchInput.value.toLowerCase().trim();
     const selectedAttribute = typeFilter.value;
 
-    // If searching for a specific name/ID not in our local list, fetch from API
+
     if (searchTerm && !selectedAttribute) {
         searchByNameAPI(searchTerm);
     } else {
-        // Otherwise, filter the current list we have
         const filtered = currentDigimonList.filter(d => {
             const matchesName = d.name.toLowerCase().includes(searchTerm) || d.id.toString() === searchTerm;
-            // Note: Initial API list doesn't always include 'attribute' in the summary.
-            // If it's missing, we show all, or you can fetch details.
             return matchesName;
         });
         renderDigimonList(filtered);
     }
 }
 
-/**
- * API Fetch for specific Digimon detail
- */
+
 async function searchByNameAPI(term) {
     digimonCardResult.innerHTML = `<div class="text-center p-5"><div class="spinner-border text-danger"></div></div>`;
     try {
@@ -61,9 +49,7 @@ async function searchByNameAPI(term) {
     }
 }
 
-/**
- * Renders the horizontal list
- */
+
 function renderDigimonList(list) {
     digimonCardResult.innerHTML = ''; 
     if (list.length === 0) {
@@ -85,9 +71,7 @@ function renderDigimonList(list) {
     });
 }
 
-/**
- * Renders the Detail View (with Attribute logic)
- */
+
 function renderSingleDetailCard(data) {
     const { name, id, images, levels, attributes, types, skills } = data;
     const attributeName = attributes[0]?.attribute || 'N/A';
@@ -140,15 +124,15 @@ homeBtn.addEventListener('click', () => {
     typeFilter.value = '';
     fetchInitialList();
 });
-
-// Clear Button logic
-if(clearBtn) {
+if (clearBtn) {
     clearBtn.addEventListener('click', () => {
+        // 1. Reset the UI elements
         digimonSearchInput.value = '';
         typeFilter.value = '';
+        
+        // 2. Re-render the original cached list
         renderDigimonList(currentDigimonList);
     });
 }
 
-// Start app
 fetchInitialList();
