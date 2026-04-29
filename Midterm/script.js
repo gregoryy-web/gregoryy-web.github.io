@@ -126,7 +126,6 @@ homeBtn.addEventListener('click', () => {
 });
 if (clearBtn) {
     clearBtn.addEventListener('click', () => {
-        // 1. Reset the UI elements
         digimonSearchInput.value = '';
         typeFilter.value = '';
         
