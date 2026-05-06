@@ -10,10 +10,18 @@
         href="https://play-lh.googleusercontent.com/Knuo5ePMUKnyn4gC7x9BxV613ropEmdlwwDqckAEMH4emwhbo4dHPD_Y9xlL71RTgw=w240-h480-rw">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="glass dark-glass shadow p-3 border-bottom position-fixed top-0 d-xl-none z-3 w-100">
+        <div class="container text-center">
+            <a href="javascript:void(0)" id="mobileHomeBtn" class="text-white text-decoration-none fw-bold">Home</a>
+        </div>
+    </div>
+
     <div class="meteorContainer">
         <div class="meteor"></div>
         <div class="meteor"></div>
@@ -25,16 +33,40 @@
         <div class="meteor"></div>
     </div>
 
-    <div class="container py-5">
-        <div class="row g-4">
-            <aside class="col-lg-4 stickySidebar">
-                <div class="sidebarCard glassCard">
-                    <h2 class="fw-bold mb-4">DigiDex</h2>
+    <div class="container py-5 mt-5 mt-xl-0">
+        <div class="row g-4 d-flex flex-column flex-xl-row">
+            <main class="col-12 col-xl-8 order-1 order-xl-2">
+                <div class="card glass shadow rounded-4 position-relative overflow-hidden border-0">
+                    <div class="z-1 d-flex flex-row justify-content-end position-sticky top-0">
+                        <div class="glass dark-glass navigation-tab shadow border-start border-bottom p-3 d-none d-xl-block">
+                            <div class="d-flex flex-row">
+                                <a href="javascript:void(0)" id="homeBtn" class="text-light text-decoration-none fw-bold px-3">Home</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resultsContainer p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4 pt-xl-0 pt-2">
+                            <h3 class="fw-bold m-0" style="color: #366775;">Digimons</h3>
+                        </div>
+
+                        <div id="digimonCardResult" class="d-flex flex-column gap-3">
+                            <div class="text-center p-5">
+                                <p class="text-muted">Scanning Digital World...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="col-12 col-xl-4 stickySidebar order-2 order-xl-1">
+                <div class="sidebarCard glassCard shadow-lg">
+                    <h2 class="fw-bold mb-4" style="color: #4c8da0;">DigiDex</h2>
                     <div class="text-start">
                         <label class="small fw-bold mb-1 opacity-75">FIND DIGIMON</label>
-                        <input type="text" id="digimonSearchInput" class="formControl form-control" placeholder="Search name...">
+                        <input type="text" id="digimonSearchInput" class="formControl form-control mb-3" placeholder="Search name...">
 
-                        <label class="small fw-bold mt-3 mb-1 opacity-75">ATTRIBUTE</label>
+                        <label class="small fw-bold mb-1 opacity-75">ATTRIBUTE</label>
                         <select class="formSelect form-select" id="typeFilter">
                             <option value="" selected>All Attributes</option>
                             <option value="Vaccine">Vaccine</option>
@@ -48,22 +80,6 @@
                     </div>
                 </div>
             </aside>
-
-            <main class="col-lg-8">
-                <div class="resultsContainer glassCard p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3 class="fw-bold m-0">Digimons</h3>
-                        <button class="btn px-4 text-white" id="homeBtn"
-                            style="background: #4c8da0; border-radius: 50px;">Home</button>
-                    </div>
-
-                    <div id="digimonCardResult" class="d-flex flex-column gap-3">
-                        <div class="text-center p-5">
-                            <p class="text-muted">Scanning Digital World...</p>
-                        </div>
-                    </div>
-                </div>
-            </main>
         </div>
     </div>
 
