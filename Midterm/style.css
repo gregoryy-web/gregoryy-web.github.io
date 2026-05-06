@@ -62,58 +62,35 @@ body {
 .meteor:nth-child(7) { top: 0%; left: 65%; animation-duration: 8s; animation-delay: 0.5s; }
 .meteor:nth-child(8) { top: 80%; left: 20%; animation-duration: 12s; }
 
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-glass {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.navigation-tab {
+    border-bottom-left-radius: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.navigation-tab:hover {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
 .glassCard {
     background: rgba(255, 255, 255, 0.75) !important;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 32px;
-    box-shadow: 0 15px 45px rgba(76, 141, 160, 0.1);
 }
 
 .sidebarCard { padding: 40px 25px; }
-
-.formControl, .formSelect {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    padding: 12px;
-}
-
-.btnSearch {
-    background-color: #4c8da0;
-    color: white;
-    border-radius: 14px;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 4px 15px rgba(76, 141, 160, 0.3);
-    transition: 0.3s ease;
-}
-
-.btnSearch:hover { 
-    background-color: #366775; 
-    transform: translateY(-2px); 
-}
-
-.btnClear {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    color: #888;
-    font-weight: 600;
-}
-
-.digiCard {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.digiCard:hover {
-    transform: translateX(8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-}
 
 .stickySidebar {
     position: -webkit-sticky;
@@ -123,8 +100,5 @@ body {
     z-index: 100;
 }
 
-.glassCard {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+.btnSearch { background-color: #4c8da0; color: white; border-radius: 14px; font-weight: bold; border: none; }
+.btnClear { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 14px; color: #888; }
