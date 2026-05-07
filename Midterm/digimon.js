@@ -1,8 +1,4 @@
-/**
- * UI Component Library for Digimon Cards
- */
-
-export function renderDigimonListHTML(list, pageInfo, currentPage) {
+export function renderDigimonListHtml(list, pageInfo, currentPage) {
     let navHtml = '';
     if (pageInfo && pageInfo.totalPages > 1) {
         navHtml = `
@@ -15,12 +11,12 @@ export function renderDigimonListHTML(list, pageInfo, currentPage) {
     }
 
     const listHtml = list.map(d => `
-        <div class="digi-card d-flex align-items-center p-3 rounded-4 shadow-sm bg-white mb-2" 
-             onclick="searchByNameApi('${d.name}')" role="button" style="cursor:pointer; border-left: 5px solid #20c997;">
-            <span class="text-secondary fw-bold me-4">#${String(d.id).padStart(4, '0')}</span>
-            <h3 class="h6 fw-bold mb-0 flex-grow-1 text-dark">${d.name}</h3>
-            <div class="img-container rounded-3 p-1 bg-light">
-                <img src="${d.image}" alt="${d.name}" style="width: 40px; height: 40px; object-fit: contain;">
+        <div class="digi-card d-flex align-items-center p-4 rounded-4 shadow-sm bg-white mb-3" 
+             onclick="searchByNameApi('${d.name}')" role="button" style="cursor:pointer; border-left: 6px solid #20c997; transition: transform 0.2s;">
+            <span class="text-secondary fw-bold me-4 fs-5" style="min-width: 80px;">#${String(d.id).padStart(4, '0')}</span>
+            <h3 class="h4 fw-bold mb-0 flex-grow-1 text-dark">${d.name}</h3>
+            <div class="img-container rounded-3 p-2 bg-light shadow-sm">
+                <img src="${d.image}" alt="${d.name}" style="width: 64px; height: 64px; object-fit: contain;">
             </div>
         </div>
     `).join('');
@@ -28,9 +24,9 @@ export function renderDigimonListHTML(list, pageInfo, currentPage) {
     return navHtml + listHtml + navHtml;
 }
 
-export function renderSingleDetailHTML(data) {
+export function renderSingleDetailHtml(data) {
     const { name, id, images, levels, attributes, types, skills, fields } = data;
-    const attributeName = attributes[0]?.attribute || 'N/A';
+    const attributeName = attributes?.[0]?.attribute || 'N/A';
     
     const attrColors = {
         'Vaccine': 'bg-teal text-white',
@@ -42,25 +38,26 @@ export function renderSingleDetailHTML(data) {
 
     return `
         <div class="digimon-detail-view w-100 animate__animated animate__fadeIn">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <span class="badge mb-1" style="background-color: #e9ecef; color: #20c997; border: 1px solid #20c997;">#${String(id).padStart(4, '0')}</span>
-                    <h2 class="display-5 fw-bold mb-0" style="color: #0d684d;">${name}</h2>
-                </div>
-                <button class="btn btn-outline-secondary rounded-pill px-4" onclick="fetchInitialList(currentPage)">
-                    Back
-                </button>
+            <div class="text-center mb-4">
+                <span class="badge mb-1" style="background-color: #e9ecef; color: #20c997; border: 1px solid #20c997;">#${String(id).padStart(4, '0')}</span>
+                <h2 class="display-5 fw-bold mb-0" style="color: #0d684d;">${name}</h2>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-5 col-md-12">
-                    <div class="text-center rounded-5 p-4 mb-3" style="background-color: #f0fdfa;">
-                        <img src="${images[0]?.href}" alt="${name}" class="img-fluid" style="max-height: 350px; filter: drop-shadow(0 10px 15px rgba(32, 201, 151, 0.2));">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 col-12">
+                    <div class="text-center rounded-5 p-4 mb-4" style="background-color: #f0fdfa;">
+                        <img src="${images?.[0]?.href}" alt="${name}" class="img-fluid" style="max-height: 400px; filter: drop-shadow(0 10px 15px rgba(32, 201, 151, 0.2));">
                     </div>
-                    
-                    <div class="fields-container p-3 rounded-4 border bg-light">
-                        <h6 class="fw-bold mb-3 text-muted small text-uppercase">Fields / Origins</h6>
-                        <div class="d-flex flex-wrap gap-2">
+
+                    <div class="row g-2 mb-4">
+                        ${renderBadgeCol("level", levels?.[0]?.level, 'bg-dark text-white')}
+                        ${renderBadgeCol("attribute", attributeName, attrClass)}
+                        ${renderBadgeCol("type", types?.[0]?.type, 'bg-white text-dark border')}
+                    </div>
+
+                    <div class="fields-container p-3 rounded-4 border bg-light mb-4">
+                        <h6 class="fw-bold mb-3 text-muted small text-uppercase text-center">Fields / Origins</h6>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
                             ${fields?.length ? fields.map(f => `
                                 <div class="d-flex align-items-center bg-white border rounded-pill px-3 py-1 shadow-sm">
                                     <img src="${f.image}" alt="${f.field}" style="width: 20px; height: 20px; margin-right: 8px;">
@@ -68,14 +65,6 @@ export function renderSingleDetailHTML(data) {
                                 </div>
                             `).join('') : '<span class="text-muted small">No fields found.</span>'}
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-7 col-md-12">
-                    <div class="row g-2 mb-4">
-                        ${renderBadgeCol("level", levels[0]?.level, 'bg-dark text-white')}
-                        ${renderBadgeCol("attribute", attributeName, attrClass)}
-                        ${renderBadgeCol("type", types[0]?.type, 'bg-white text-dark border')}
                     </div>
 
                     <div class="skills-container bg-white border rounded-4 p-4 shadow-sm">

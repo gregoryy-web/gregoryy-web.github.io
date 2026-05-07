@@ -1,4 +1,4 @@
-import { renderDigimonListHTML, renderSingleDetailHTML } from './digimon.js';
+import { renderDigimonListHtml, renderSingleDetailHtml } from './digimon.js';
 
 const searchSubmitBtn = document.getElementById('searchSubmitBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -7,11 +7,10 @@ const digimonCardResult = document.getElementById('digimonCardResult');
 const homeBtn = document.getElementById('homeBtn');
 const mobileHomeBtn = document.getElementById('mobileHomeBtn');
 
-let currentPage = 0;
+window.currentPage = 0;
 const pageSize = 10;
 const apiBase = 'https://digi-api.com/api/v1/digimon';
 
-// Make functions globally available for inline onclick handlers
 window.searchByNameApi = searchByNameApi;
 window.fetchInitialList = fetchInitialList;
 
@@ -22,7 +21,7 @@ async function fetchInitialList(page = 0) {
         if (!response.ok) throw new Error("Server error");
         
         const data = await response.json();
-        currentPage = data.pageable.currentPage;
+        window.currentPage = data.pageable.currentPage;
         renderDigimonList(data.content, data.pageable);
     } catch (error) {
         renderError("Failed to sync with Digital World.");
@@ -30,9 +29,10 @@ async function fetchInitialList(page = 0) {
 }
 
 async function searchByNameApi(term) {
+    if (!term) return;
     renderLoading();
     try {
-        const response = await fetch(`${apiBase}/${term.trim()}`);
+        const response = await fetch(`${apiBase}/${encodeURIComponent(term.trim())}`);
         if (!response.ok) throw new Error(`Digimon "${term}" not found.`);
         
         const data = await response.json();
@@ -50,22 +50,40 @@ function renderDigimonList(list, pageInfo = null) {
         return;
     }
 
-    digimonCardResult.innerHTML = renderDigimonListHTML(list, pageInfo, currentPage);
+    digimonCardResult.innerHTML = renderDigimonListHtml(list, pageInfo, window.currentPage);
 
-    document.querySelectorAll('.prevBtnInst').forEach(b => b.onclick = () => { window.scrollTo(0,0); fetchInitialList(currentPage - 1); });
-    document.querySelectorAll('.nextBtnInst').forEach(b => b.onclick = () => { window.scrollTo(0,0); fetchInitialList(currentPage + 1); });
+    document.querySelectorAll('.prevBtnInst').forEach(b => {
+        b.onclick = () => {
+            window.scrollTo(0, 0);
+            fetchInitialList(window.currentPage - 1);
+        };
+    });
+    document.querySelectorAll('.nextBtnInst').forEach(b => {
+        b.onclick = () => {
+            window.scrollTo(0, 0);
+            fetchInitialList(window.currentPage + 1);
+        };
+    });
 }
 
 function renderSingleDetailCard(data) {
-    digimonCardResult.innerHTML = renderSingleDetailHTML(data);
+    digimonCardResult.innerHTML = renderSingleDetailHtml(data);
 }
 
 function renderLoading() { 
-    digimonCardResult.innerHTML = `<div class="text-center p-5"><div class="spinner-border" style="color: #20c997;"></div><p class="text-muted mt-2">Syncing with Digital World...</p></div>`; 
+    digimonCardResult.innerHTML = `
+        <div class="text-center p-5">
+            <div class="spinner-border" style="color: #20c997;"></div>
+            <p class="text-muted mt-2">Syncing with Digital World...</p>
+        </div>`; 
 }
 
 function renderError(msg) { 
-    digimonCardResult.innerHTML = `<div class="alert alert-light border-danger text-danger text-center shadow-sm">${msg}</div>`; 
+    digimonCardResult.innerHTML = `
+        <div class="alert alert-light border-danger text-danger text-center shadow-sm mx-auto" style="max-width: 400px;">
+            ${msg}
+            <br><button class="btn btn-sm btn-outline-danger mt-2" onclick="fetchInitialList(0)">Go Home</button>
+        </div>`; 
 }
 
 const resetApp = () => {
@@ -76,6 +94,13 @@ const resetApp = () => {
 searchSubmitBtn.addEventListener('click', () => {
     const term = digimonSearchInput.value.trim();
     if (term) searchByNameApi(term);
+});
+
+digimonSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const term = digimonSearchInput.value.trim();
+        if (term) searchByNameApi(term);
+    }
 });
 
 if (homeBtn) homeBtn.onclick = resetApp;
