@@ -21,16 +21,16 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
     const listHtml = list.map(d => `
         <div class="digiCard d-flex align-items-center justify-content-between p-3 rounded-5 shadow-sm bg-white mb-3 border-0" 
              onclick="searchByNameApi('${d.name}')" role="button" 
-             style="cursor:pointer; transition: transform 0.2s; min-height: 120px; border-left: 8px solid #5390a4 !important;">
+             style="cursor:pointer; transition: transform 0.2s; border-left: 8px solid #5390a4 !important; width: 100%;">
             
-            <div class="flex-grow-1 ps-2" style="min-width: 0;">
+            <div class="flex-grow-1 ps-2" style="min-width: 0; word-wrap: break-word;">
                 <div class="text-muted fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">
                     No ${String(d.id).padStart(4, '0')}
                 </div>
-                <h2 class="fw-bold mb-2 text-dark text-truncate" style="font-size: 1.4rem; letter-spacing: -0.5px;">
+                <h2 class="fw-bold mb-2 text-dark" style="font-size: clamp(1.1rem, 4vw, 1.4rem); letter-spacing: -0.5px; line-height: 1.2;">
                     ${d.name}
                 </h2>
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-wrap gap-2">
                     <span class="badge rounded-pill px-3 py-1" style="background-color: #5390a4; font-size: 0.7rem; font-weight: 600;">
                         Digimon
                     </span>
@@ -38,7 +38,7 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
             </div>
             
             <div class="ms-3 shadow-sm" 
-                 style="width: 100px; height: 100px; flex-shrink: 0; border-radius: 25px; 
+                 style="width: clamp(80px, 15vw, 100px); height: clamp(80px, 15vw, 100px); flex-shrink: 0; border-radius: 25px; 
                         background-color: #f1f8fa; 
                         display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid #5390a4;">
                 <img src="${d.image}" alt="${d.name}" style="width: 75%; height: 75%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.05));">
@@ -47,9 +47,11 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
     `).join('');
 
     return `
-        <div class="digimonAppWrapper container-fluid py-2 px-2 px-md-3" style="max-width: 800px; overflow-x: hidden;">
+        <div class="digimonAppWrapper container-fluid py-2 px-2 px-md-3" style="max-width: 800px; margin: 0 auto; overflow-x: hidden;">
             ${navHtml}
-            <div class="digimonListGrid">${listHtml}</div>
+            <div class="digimonListGrid d-flex flex-column align-items-center">
+                ${listHtml}
+            </div>
             ${navHtml}
         </div>
     `;
@@ -58,7 +60,6 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
 export function renderSingleDetailHtml(data) {
     const { name, id, images, levels, attributes, types, skills, fields } = data;
     const attributeName = attributes?.[0]?.attribute || 'N/A';
-    // Accent color updated to match search engine teal
     const attrStyle = "background-color: #5390a4; color: white;";
 
     return `
