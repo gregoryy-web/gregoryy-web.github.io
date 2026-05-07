@@ -58,9 +58,7 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
 }
 
 export function renderSingleDetailHtml(data) {
-    const { name, id, images, levels, attributes, types, skills, fields } = data;
-    const attributeName = attributes?.[0]?.attribute || 'N/A';
-    const attrStyle = "background-color: #5390a4; color: white;";
+    const { name, id, images, levels, types, skills, fields } = data;
 
     return `
         <div class="digimonDetailView container-fluid px-2 animate__animated animate__fadeIn">
@@ -79,9 +77,8 @@ export function renderSingleDetailHtml(data) {
                              style="max-height: 250px; width: auto; filter: drop-shadow(0 10px 15px rgba(83, 144, 164, 0.2));">
                     </div>
 
-                    <div class="row gx-2 gy-2 mb-4">
+                    <div class="row gx-2 gy-2 mb-4 justify-content-center">
                         ${renderBadgeCol("Level", levels?.[0]?.level, 'background-color: #212529; color: white;')}
-                        ${renderBadgeCol("Attribute", attributeName, attrStyle)}
                         ${renderBadgeCol("Type", types?.[0]?.type, 'background-color: white; color: #212529; border: 2px solid #dee2e6;')}
                     </div>
 
@@ -118,7 +115,7 @@ export function renderSingleDetailHtml(data) {
 
 function renderBadgeCol(label, value, customStyle) {
     return `
-        <div class="col-4">
+        <div class="col-6 col-md-4">
             <small class="text-muted fw-bold d-block mb-1 text-center" style="font-size: 0.6rem; text-transform: uppercase;">${label}</small>
             <div class="badge w-100 py-2 shadow-sm text-truncate d-block rounded-3" 
                  style="${customStyle} font-size: 0.7rem; font-weight: 700;">
