@@ -1,63 +1,52 @@
 body {
-    background: linear-gradient(135deg, #f0f7f9 0%, #ffffff 100%) !important;
+    background: #0f172a !important;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    color: #e2e8f0;
 }
 
-/* Meteor Background */
 .meteorContainer {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1; pointer-events: none;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
 }
 
 .meteor {
     position: absolute;
-    width: 14px; height: 14px;
-    background: rgba(76, 141, 160, 0.3);
-    backdrop-filter: blur(4px);
-    border-radius: 50%;
-    box-shadow: 0 0 10px #4c8da0, -5px -5px 20px #ff944d;
+    width: 2px; height: 15px;
+    background: #0ea5e9;
+    box-shadow: 0 0 15px #0ea5e9;
     opacity: 0;
-    animation: meteorFall linear infinite;
+    animation: dataStream linear infinite;
 }
 
-@keyframes meteorFall {
-    0% { transform: translate(-100px, -100px); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translate(100vw, 100vh); opacity: 0; }
+@keyframes dataStream {
+    0% { transform: translateY(-100px) scaleY(1); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(100vh) scaleY(2); opacity: 0; }
 }
 
-.meteor:nth-child(1) { top: 5%; left: 15%; animation-duration: 6s; }
-.meteor:nth-child(2) { top: 20%; left: 50%; animation-duration: 9s; }
-.meteor:nth-child(3) { top: -5%; left: 80%; animation-duration: 7s; }
+.meteor:nth-child(1) { left: 10%; animation-duration: 4s; }
+.meteor:nth-child(2) { left: 30%; animation-duration: 7s; animation-delay: 1s; }
+.meteor:nth-child(3) { left: 70%; animation-duration: 5s; animation-delay: 2s; }
+.meteor:nth-child(4) { left: 90%; animation-duration: 6s; }
 
-/* Responsive Sidebar Logic */
+.blue-glass {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(14, 165, 233, 0.3) !important;
+    border-radius: 24px;
+}
+
 @media (max-width: 1199.98px) {
     .stickySidebar {
-        position: fixed !important;
-        top: 55px; /* Directly under the Mobile Home bar */
-        left: 0;
-        width: 100%;
-        z-index: 1020;
-        padding: 0 !important; /* Full width edge-to-edge on mobile */
-    }
-    
-    .sidebarCard {
-        border-radius: 0 0 25px 25px !important;
-        border-top: none !important;
-        border-left: none !important;
-        border-right: none !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-    }
-
-    .mobile-spacer {
-        height: 180px; /* Pushes content down so search bar doesn't overlap results */
+        position: relative !important;
+        margin-bottom: 20px;
     }
 }
 
@@ -65,58 +54,81 @@ body {
     .stickySidebar {
         position: sticky !important;
         top: 20px;
-        height: fit-content;
         z-index: 100;
     }
 }
 
-/* Glass & Cards */
-.glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
-.dark-glass { background: rgba(0, 0, 0, 0.8) !important; }
-
-.glassCard {
-    background: white !important;
-    border: 1px solid #e0eef1 !important;
-    border-radius: 32px;
+.digiCard {
+    background: #ffffff !important;
+    color: #000000 !important; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Search Bar Elements */
-.bg-light-label {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 10px;
-    min-height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.digiCard:hover {
+    transform: translateX(10px) scale(1.02);
+    background: #f0f9ff !important;
+    border-left: 8px solid #f59e0b !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Buttons from User Image */
-.btnSearch { 
-    background-color: #c62828 !important; /* The red color from your image */
-    color: white !important; 
-    border-radius: 12px; 
+.form-control, .form-select {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.4) !important;
+    color: white !important;
+    border-radius: 12px;
+}
+
+.form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+.btn-info {
+    background-color: #0ea5e9 !important;
     border: none;
-    transition: background 0.2s;
+    box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.39);
 }
 
-.btnSearch:hover {
-    background-color: #a52323 !important;
+.btn-info:hover {
+    background-color: #0284c7 !important;
+    transform: translateY(-1px);
 }
 
-.btnClear { 
-    background: #ffffff !important; 
-    border: 1px solid #dee2e6 !important; 
-    color: #888 !important; 
-    border-radius: 12px; 
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Navigation Tab styling */
-.navigation-tab {
-    background: #5390a4 !important;
-    border-bottom-left-radius: 20px;
+.digimonDetailView {
+    color: #000000 !important;
 }
 
-.resultsContainer {
-    min-height: 60vh;
+.fieldsContainer {
+    background: #f8fafc !important;
+    color: #000000 !important;
+}
+
+.animate__fadeIn {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
 }

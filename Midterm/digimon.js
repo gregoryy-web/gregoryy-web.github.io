@@ -2,124 +2,89 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
     let navHtml = '';
     if (pageInfo && pageInfo.totalPages > 1) {
         navHtml = `
-            <div class="paginationContainer d-flex justify-content-between align-items-center mb-4 px-1">
-                <button class="btn prevBtnInst fw-bold rounded-pill shadow-sm px-3 py-2" 
-                    ${pageInfo.currentPage === 0 ? 'disabled' : ''} 
-                    style="background-color: #5390a4; color: white; border: none; min-width: 100px; font-size: 0.85rem;">
-                    Prev Page
+            <div class="d-flex justify-content-between mb-4">
+                <button class="btn prevBtnInst btn-info btn-sm rounded-pill text-white" ${pageInfo.currentPage === 0 ? 'disabled' : ''}>
+                    &laquo; Prev Sector
                 </button>
-                
-                <button class="btn nextBtnInst fw-bold rounded-pill shadow-sm px-3 py-2" 
-                    ${pageInfo.currentPage >= pageInfo.totalPages - 1 ? 'disabled' : ''} 
-                    style="background-color: #5390a4; color: white; border: none; min-width: 100px; font-size: 0.85rem;">
-                    Next Page
+                <span class="text-muted small">Sector ${pageInfo.currentPage + 1}</span>
+                <button class="btn nextBtnInst btn-info btn-sm rounded-pill text-white" ${pageInfo.currentPage >= pageInfo.totalPages - 1 ? 'disabled' : ''}>
+                    Next Sector &raquo;
                 </button>
-            </div>
-        `;
+            </div>`;
     }
 
-    const listHtml = list.map(d => `
-        <div class="digiCard d-flex align-items-center justify-content-between p-3 rounded-5 shadow-sm bg-white mb-3 border-0" 
-             onclick="searchByNameApi('${d.name}')" role="button" 
-             style="cursor:pointer; transition: transform 0.2s; border-left: 8px solid #5390a4 !important; width: 100%;">
-            
-            <div class="flex-grow-1 ps-2" style="min-width: 0; word-wrap: break-word;">
-                <div class="text-muted fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">
-                    No ${String(d.id).padStart(4, '0')}
-                </div>
-                <h2 class="fw-bold mb-2 text-dark" style="font-size: clamp(1.1rem, 4vw, 1.4rem); letter-spacing: -0.5px; line-height: 1.2;">
-                    ${d.name}
-                </h2>
-                <div class="d-flex flex-wrap gap-2">
-                    <span class="badge rounded-pill px-3 py-1" style="background-color: #5390a4; font-size: 0.7rem; font-weight: 600;">
-                        Digimon
-                    </span>
-                </div>
+    const listHtml = list.map(digimonItem => `
+        <div class="digiCard d-flex align-items-center justify-content-between p-3 rounded-4 bg-white mb-3 shadow-sm" 
+             onclick="searchByNameApi('${digimonItem.name}')" role="button" 
+             style="cursor:pointer; border-left: 8px solid #5390a4;">
+            <div class="flex-grow-1 ps-2">
+                <div class="text-muted small fw-bold">#${String(digimonItem.id).padStart(4, '0')}</div>
+                <h2 class="h5 fw-bold mb-1 text-dark">${digimonItem.name}</h2>
+                <span class="badge bg-info" style="font-size: 0.6rem;">DIGIMON</span>
             </div>
-            
-            <div class="ms-3 shadow-sm" 
-                 style="width: clamp(80px, 15vw, 100px); height: clamp(80px, 15vw, 100px); flex-shrink: 0; border-radius: 25px; 
-                        background-color: #f1f8fa; 
-                        display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid #5390a4;">
-                <img src="${d.image}" alt="${d.name}" style="width: 75%; height: 75%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.05));">
+            <div style="width: 80px; height: 80px; background: #f8f9fa; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <img src="${digimonItem.image}" alt="${digimonItem.name}" style="width: 80%; object-fit: contain;">
             </div>
         </div>
     `).join('');
 
-    return `
-        <div class="digimonAppWrapper container-fluid py-2 px-2 px-md-3" style="max-width: 800px; margin: 0 auto; overflow-x: hidden;">
-            ${navHtml}
-            <div class="digimonListGrid d-flex flex-column align-items-center">
-                ${listHtml}
-            </div>
-            ${navHtml}
-        </div>
-    `;
+    return `<div class="container-fluid">${navHtml}<div>${listHtml}</div>${navHtml}</div>`;
 }
 
 export function renderSingleDetailHtml(data) {
-    const { name, id, images, levels, types, skills, fields } = data;
+    const { name, id, images, levels, types, skills, fields, attributes } = data;
+
+    const skillsHtml = skills?.map(skillItem => `
+        <div class="mb-3 border-bottom pb-2">
+            <div class="text-info fw-bold">${skillItem.skill}</div>
+            <small class="text-muted d-block">${skillItem.description || 'No data available.'}</small>
+        </div>
+    `).join('') || 'No special moves recorded.';
+
+    const fieldsHtml = fields?.map(fieldItem => `
+        <img src="${fieldItem.image}" title="${fieldItem.field}" class="me-1" style="width: 30px;">
+    `).join('') || '';
 
     return `
-        <div class="digimonDetailView container-fluid px-2 animate__animated animate__fadeIn">
-            <div class="text-center mb-3 mb-md-4">
-                <span class="badge mb-2 px-3 py-2" style="background-color: #f8f9fa; color: #5390a4; border: 2px solid #5390a4; font-size: 0.8rem; font-weight: 800;">
-                    ID: #${String(id).padStart(4, '0')}
-                </span>
-                <h1 class="h2 fw-bold mb-0" style="color: #2c4a54; letter-spacing: -1px;">${name}</h1>
+        <div class="animate__animated animate__fadeIn">
+            <div class="text-center mb-4">
+                <h1 class="fw-bold text-info">${name}</h1>
+                <span class="badge bg-dark border border-info">ID: #${String(id).padStart(4, '0')}</span>
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="text-center rounded-5 p-3 p-md-5 mb-4 shadow-sm border bg-white" 
-                         style="background-image: radial-gradient(circle, #f4f9fb 0%, #ffffff 100%);">
-                        <img src="${images?.[0]?.href}" alt="${name}" class="img-fluid" 
-                             style="max-height: 250px; width: auto; filter: drop-shadow(0 10px 15px rgba(83, 144, 164, 0.2));">
+                <div class="col-md-8">
+                    <div class="card bg-white p-4 rounded-5 text-center mb-4 shadow">
+                        <img src="${images?.[0]?.href}" class="img-fluid mx-auto" style="max-height: 300px;">
                     </div>
 
-                    <div class="row gx-2 gy-2 mb-4 justify-content-center">
-                        ${renderBadgeCol("Level", levels?.[0]?.level, 'background-color: #212529; color: white;')}
-                        ${renderBadgeCol("Type", types?.[0]?.type, 'background-color: white; color: #212529; border: 2px solid #dee2e6;')}
-                    </div>
-
-                    <div class="fieldsContainer p-3 rounded-4 border bg-white shadow-sm mb-4 text-center">
-                        <h6 class="fw-bold mb-3 text-muted text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Fields</h6>
-                        <div class="d-flex flex-wrap gap-2 justify-content-center">
-                            ${fields?.length ? fields.map(f => `
-                                <div class="d-flex align-items-center bg-light border rounded-pill px-2 py-1 shadow-sm">
-                                    <img src="${f.image}" alt="${f.field}" style="width: 18px; height: 18px; margin-right: 5px;">
-                                    <span style="font-size: 0.75rem;" class="fw-bold text-dark">${f.field}</span>
-                                </div>
-                            `).join('') : '<span class="text-muted small">None</span>'}
+                    <div class="row g-2 mb-4">
+                        <div class="col-6">
+                            <div class="p-2 bg-dark text-white rounded text-center small">
+                                <div class="text-muted" style="font-size: 0.6rem;">LEVEL</div>
+                                <b>${levels?.[0]?.level || 'N/A'}</b>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 bg-info text-white rounded text-center small">
+                                <div class="text-white-50" style="font-size: 0.6rem;">ATTRIBUTE</div>
+                                <b>${attributes?.[0]?.attribute || 'N/A'}</b>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skillsContainer bg-white border rounded-4 p-3 p-md-4 shadow-sm">
-                        <h5 class="fw-bold mb-3 text-uppercase" style="font-size: 0.9rem; color: #5390a4;">Special Moves</h5>
-                        <div class="moveList">
-                            ${skills?.length ? skills.slice(0, 5).map(s => `
-                                <div class="mb-3 pb-2 border-bottom">
-                                    <div class="fw-bold mb-1" style="color: #2c4a54; font-size: 1rem;">${s.skill}</div>
-                                    <p class="text-secondary mb-0" style="font-size: 0.85rem; line-height: 1.4;">
-                                        ${s.description || 'No description available.'}
-                                    </p>
-                                </div>
-                            `).join('') : '<p class="text-muted small">No moves recorded.</p>'}
+                    <div class="card bg-white p-4 rounded-4 shadow-sm mb-4">
+                        <h5 class="fw-bold border-bottom pb-2 mb-3">Special Moves</h5>
+                        <div class="skillsList text-start">
+                            ${skillsHtml}
                         </div>
+                    </div>
+
+                    <div class="fieldsContainer p-3 rounded-4 text-center">
+                        <div class="text-muted small mb-2">Digital Fields</div>
+                        ${fieldsHtml}
                     </div>
                 </div>
-            </div>
-        </div>
-    `;
-}
-
-function renderBadgeCol(label, value, customStyle) {
-    return `
-        <div class="col-6 col-md-4">
-            <small class="text-muted fw-bold d-block mb-1 text-center" style="font-size: 0.6rem; text-transform: uppercase;">${label}</small>
-            <div class="badge w-100 py-2 shadow-sm text-truncate d-block rounded-3" 
-                 style="${customStyle} font-size: 0.7rem; font-weight: 700;">
-                ${value || 'N/A'}
             </div>
         </div>`;
 }
