@@ -11,20 +11,22 @@ const pageSize = 10;
 const apiBase = 'https://digi-api.com/api/v1/digimon';
 let debounceTimer;
 
-window.searchByNameApi = searchByNameApi;
-window.fetchInitialList = fetchInitialList;
-
-function debounceSearch(callback, delay = 300) {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(callback, delay);
-}
 
 async function fetchInitialList(page = 0, nameFilter = '') {
+    const term = nameFilter.trim();
+    
+  
+    const isId = /^\d+$/.test(term);
+
+    if (isId) {
+        return searchByNameApi(term);
+    }
+
     renderLoading();
     try {
         let url = `${apiBase}?page=${page}&pageSize=${pageSize}`;
-        if (nameFilter) {
-            url += `&name=${encodeURIComponent(nameFilter)}`;
+        if (term) {
+            url += `&name=${encodeURIComponent(term)}`;
         }
 
         const response = await fetch(url);
@@ -33,12 +35,12 @@ async function fetchInitialList(page = 0, nameFilter = '') {
         const data = await response.json();
         
         if (!data.content || data.content.length === 0) {
-            renderError(`No units found matching "${nameFilter}"`);
+            renderError(`No units found matching "${term}"`);
             return;
         }
 
         window.currentPage = data.pageable.currentPage;
-        renderDigimonList(data.content, data.pageable, nameFilter);
+        renderDigimonList(data.content, data.pageable, term);
     } catch (error) {
         renderError(error.message);
     }
@@ -51,7 +53,6 @@ async function searchByNameApi(term) {
         return;
     }
     renderLoading();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
         const response = await fetch(`${apiBase}/${encodeURIComponent(term.trim())}`);
         if (!response.ok) throw new Error(`Unit "${term}" not found.`);
@@ -61,6 +62,8 @@ async function searchByNameApi(term) {
         renderError(error.message);
     }
 }
+
+
 
 function renderDigimonList(list, pageInfo = null, currentSearchTerm = '') {
     const statusContainer = document.querySelector('.resultsContainer .position-sticky .dark-glass');
@@ -95,7 +98,6 @@ function renderSingleDetailCard(data) {
         `;
     }
 
-
     const sectionTitle = document.querySelector('.resultsContainer .h2');
     if (sectionTitle) sectionTitle.innerText = "Unit Analysis";
 
@@ -119,6 +121,13 @@ function renderError(msg) {
         </div>`; 
 }
 
+
+
+function debounceSearch(callback, delay = 400) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(callback, delay);
+}
+
 const resetApp = () => {
     digimonSearchInput.value = '';
     fetchInitialList(0);
@@ -136,7 +145,9 @@ searchSubmitBtn.addEventListener('click', () => {
 if (clearBtn) clearBtn.addEventListener('click', resetApp);
 if (homeBtn) homeBtn.onclick = resetApp;
 
-fetchInitialList(0);
 window.resetApp = resetApp; 
 window.searchByNameApi = searchByNameApi;
 window.fetchInitialList = fetchInitialList;
+
+
+fetchInitialList(0);
