@@ -6,7 +6,7 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
                 <button class="btn prevBtnInst btn-info btn-sm rounded-pill text-white" ${pageInfo.currentPage === 0 ? 'disabled' : ''}>
                     &laquo; Prev Sector
                 </button>
-                <span class="text-muted small">Sector ${pageInfo.currentPage + 1}</span>
+                <span class="text-secondary small">Sector ${pageInfo.currentPage + 1}</span>
                 <button class="btn nextBtnInst btn-info btn-sm rounded-pill text-white" ${pageInfo.currentPage >= pageInfo.totalPages - 1 ? 'disabled' : ''}>
                     Next Sector &raquo;
                 </button>
@@ -14,16 +14,16 @@ export function renderDigimonListHtml(list, pageInfo, currentPage) {
     }
 
     const listHtml = list.map(digimonItem => `
-        <div class="digiCard d-flex align-items-center justify-content-between p-3 rounded-4 bg-white mb-3 shadow-sm" 
+        <div class="digiCard digi-card-dynamic d-flex align-items-center justify-content-between p-3 rounded-4 mb-3 shadow-sm border border-secondary border-opacity-10" 
              onclick="searchByNameApi('${digimonItem.name}')" role="button" 
-             style="cursor:pointer; border-left: 8px solid #0ea5e9;">
+             style="cursor:pointer; border-left: 8px solid #0ea5e9 !important;">
             <div class="flex-grow-1 ps-2">
-                <div class="small fw-bold" style="color: #000000 !important; opacity: 0.6;">#${String(digimonItem.id).padStart(4, '0')}</div>
-                <h2 class="h5 fw-bold mb-1" style="color: #000000 !important;">${digimonItem.name}</h2>
+                <div class="small fw-bold opacity-50">#${String(digimonItem.id).padStart(4, '0')}</div>
+                <h2 class="h5 fw-bold mb-1">${digimonItem.name}</h2>
                 <span class="badge bg-info" style="font-size: 0.6rem;">DIGIMON</span>
             </div>
-            <div style="width: 80px; height: 80px; background: #f8f9fa; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                <img src="${digimonItem.image}" alt="${digimonItem.name}" style="width: 80%; object-fit: contain;">
+            <div class="image-holder" style="width: 80px; height: 80px; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05);">
+                <img src="${digimonItem.image}" alt="${digimonItem.name}" style="width: 85%; object-fit: contain;">
             </div>
         </div>
     `).join('');
@@ -35,19 +35,19 @@ export function renderSingleDetailHtml(data) {
     const { name, id, images, levels, types, skills, fields, attributes } = data;
 
     const skillsHtml = skills?.map(skillItem => `
-        <div class="mb-3 p-3 rounded-3" style="background-color: #f8f9fa; border-left: 5px solid #0ea5e9;">
+        <div class="mb-3 p-3 rounded-3 skill-box" style="border-left: 5px solid #0ea5e9;">
             <div class="d-flex justify-content-between align-items-center mb-1">
                 <span class="fw-bold text-info" style="font-size: 1.1rem; letter-spacing: 0.5px;">${skillItem.skill}</span>
                 <span class="badge rounded-pill bg-dark text-white shadow-sm" style="font-size: 0.65rem;">ATTACK</span>
             </div>
-            <p class="mb-0 fw-medium" style="color: #000000 !important; font-size: 0.85rem; line-height: 1.5; opacity: 0.8;">
+            <p class="mb-0 fw-medium opacity-75" style="font-size: 0.85rem; line-height: 1.5;">
                 ${skillItem.description || 'No specialized data recorded for this maneuver.'}
             </p>
         </div>
-    `).join('') || '<div class="text-center py-3" style="color: #000000 !important;">No special moves found.</div>';
+    `).join('') || '<div class="text-center py-3">No special moves found.</div>';
 
     const fieldsHtml = fields?.map(fieldItem => `
-        <div class="d-inline-block p-1 bg-light rounded-2 shadow-sm">
+        <div class="d-inline-block p-1 field-badge rounded-2 shadow-sm border border-secondary border-opacity-25">
             <img src="${fieldItem.image}" title="${fieldItem.field}" style="width: 32px; height: 32px; object-fit: contain;">
         </div>
     `).join('') || '';
@@ -65,7 +65,7 @@ export function renderSingleDetailHtml(data) {
 
             <div class="row justify-content-center">
                 <div class="col-md-11 col-lg-9">
-                    <div class="card bg-white p-4 rounded-5 text-center mb-4 shadow-lg border-0">
+                    <div class="card detail-main-card p-4 rounded-5 text-center mb-4 shadow-lg border-0">
                         <img src="${images?.[0]?.href}" class="img-fluid mx-auto" style="max-height: 350px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));">
                     </div>
 
@@ -84,15 +84,15 @@ export function renderSingleDetailHtml(data) {
                         </div>
                     </div>
 
-                    <div class="fieldsContainer p-3 rounded-4 text-center bg-white shadow-sm mb-4 border border-light">
-                        <div class="fw-bold small mb-3" style="color: #000000 !important; letter-spacing: 2px; font-size: 0.75rem;">DIGITAL FIELDS</div>
+                    <div class="fields-container-dynamic p-3 rounded-4 text-center shadow-sm mb-4 border border-secondary border-opacity-10">
+                        <div class="fw-bold small mb-3 opacity-75" style="letter-spacing: 2px; font-size: 0.75rem;">DIGITAL FIELDS</div>
                         <div class="d-flex justify-content-center flex-wrap gap-3">${fieldsHtml}</div>
                     </div>
 
-                    <div class="card bg-white p-4 rounded-4 shadow-lg mb-4 border-0">
-                        <div class="d-flex align-items-center mb-4 border-bottom pb-2">
+                    <div class="card detail-moves-card p-4 rounded-4 shadow-lg mb-4 border-0">
+                        <div class="d-flex align-items-center mb-4 border-bottom border-secondary border-opacity-25 pb-2">
                             <i class="fa fa-crosshairs text-info me-2 h4 mb-0"></i>
-                            <h4 class="fw-bold mb-0" style="color: #000000 !important; letter-spacing: 1px;">Special Moves</h4>
+                            <h4 class="fw-bold mb-0" style="letter-spacing: 1px;">Special Moves</h4>
                         </div>
                         <div class="skillsList text-start">${skillsHtml}</div>
                     </div>
