@@ -1,67 +1,82 @@
-body{
-margin:0;
-background:#1b1b1b;
-color:white;
-font-family:'Press Start 2P', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+    margin: 0;
+    background: #f0f2f5; /* Subtle grey-blue background */
+    color: #2d3436;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
 }
 
-/* Minecraft card blocks */
-.minecraft-card{
-background:#3b3b3b;
-border:4px solid #000;
-box-shadow:6px 6px 0 #000;
+/* Modern Card Style */
+.minecraft-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    overflow: hidden;
 }
 
-/* Navigation area */
-.minecraft-nav{
-background:#2a2a2a;
-border-bottom:4px solid #000;
+/* Navigation */
+.minecraft-nav {
+    background: #ffffff;
+    border-bottom: 1px solid #e9ecef;
 }
 
-/* Minecraft buttons */
-.navbtn{
-font-family:'Press Start 2P', monospace;
-font-size:10px;
-background:#7ed321;
-color:black;
-border:3px solid #000;
-padding:10px 16px;
-box-shadow:4px 4px 0 #000;
-transition:all .1s;
+.navbtn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    color: #636e72;
+    border: none;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+    border-radius: 12px;
 }
 
-.navbtn:hover{
-background:#9cff33;
-transform:translateY(-2px);
+.navbtn:hover {
+    color: #000;
+    background: #f8f9fa;
 }
 
-.navbtn:active{
-transform:translateY(3px);
-box-shadow:2px 2px 0 #000;
+.navbtn.active {
+    color: #007bff !important;
+    background: rgba(0, 123, 255, 0.08);
 }
 
-/* Active button */
-.navbtn.active{
-background:#ffd800;
-color:black !important;
+/* Profile Elements */
+.minecraft-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-top: 15px;
 }
 
-/* Name title */
-.minecraft-title{
-font-size:14px;
-margin-top:15px;
-letter-spacing:2px;
+.minecraft-badge {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+    padding: 6px 18px;
+    border-radius: 50px;
+    display: inline-block;
 }
 
-/* Badge style */
-.minecraft-badge{
-margin-top:10px;
-padding:10px;
-background:#6b6b6b;
-border:3px solid #000;
+/* Content Area */
+.main-content-box {
+    padding: 30px;
 }
 
-/* Mobile content */
-.main-content-box{
-padding:20px;
+/* Project Card styling inside portfolio.html */
+.project-card {
+    border: 1px solid #edf2f7;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
