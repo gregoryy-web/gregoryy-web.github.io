@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!display) return;
 
-            navButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll(`.navbtn[data-target="${targetId}"]`).forEach(btn => {
+                btn.classList.remove('active');
+            });
             this.classList.add('active');
 
-            // Updated path to include the 'contents' folder
             fetch(`./contents/${page}.html`)
                 .then(response => {
                     if (!response.ok) throw new Error(`Could not find ${page}.html`);
@@ -32,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Auto-load the About page on startup
-    const defaultBtn = document.querySelector('[data-page="about"]');
-    if (defaultBtn) defaultBtn.click();
+    const defaultButtons = document.querySelectorAll('[data-page="about"]');
+    defaultButtons.forEach(btn => btn.click());
 });
