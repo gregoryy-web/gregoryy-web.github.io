@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const htmlElement = document.documentElement;
+
+    const setTheme = (theme) => {
+        htmlElement.setAttribute('data-bs-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        const icon = theme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars-fill';
+        
+        [themeToggle, themeToggleMobile].forEach(btn => {
+            if(btn) btn.innerHTML = `<i class="bi ${icon}"></i>`;
+        });
+    };
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+
+    [themeToggle, themeToggleMobile].forEach(btn => {
+        if(btn) {
+            btn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+    });
+
     const navButtons = document.querySelectorAll('.navbtn');
 
     navButtons.forEach(button => {

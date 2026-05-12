@@ -16,10 +16,13 @@
 
     <div class="p-3 text-center d-xl-none minecraft-nav sticky-top shadow-sm">
         <div class="container">
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around align-items-center">
                 <button class="btn navbtn" data-page="about" data-target="content-display-1">About</button>
                 <button class="btn navbtn" data-page="portfolio" data-target="content-display-1">Projects</button>
                 <button class="btn navbtn" data-page="education" data-target="content-display-1">Education</button>
+                <button id="theme-toggle-mobile" class="btn btn-link text-decoration-none p-0">
+                    <i class="bi bi-moon-stars-fill fs-5"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -36,22 +39,16 @@
                     <div class="minecraft-badge mb-4">DIT 2-1 Student</div>
 
                     <div class="w-100 pt-3 border-top">
-                        <p class="text-uppercase small fw-bold text-secondary mb-3" style="letter-spacing: 1px;">Connect
-                        </p>
+                        <p class="text-uppercase small fw-bold text-secondary mb-3" style="letter-spacing: 1px;">Connect</p>
                         <div class="d-flex justify-content-center gap-3">
-                            <a href="https://github.com/gregoryy-web" target="_blank" class="text-dark fs-4"
-                                title="GitHub">
+                            <a href="https://github.com/gregoryy-web" target="_blank" class="text-dark fs-4" title="GitHub">
                                 <i class="bi bi-github"></i>
                             </a>
-                            <a href="https://instagram.com/yaboy_n3il" target="_blank" class="text-dark fs-4"
-                                title="Instagram">
+                            <a href="https://instagram.com/yaboy_n3il" target="_blank" class="text-dark fs-4" title="Instagram">
                                 <i class="bi bi-instagram"></i>
                             </a>
-                            <a href="https://facebook.com/itzyaboyn3il" target="_blank" class="text-dark fs-4"
-                                title="Facebook">
+                            <a href="https://facebook.com/itzyaboyn3il" target="_blank" class="text-dark fs-4" title="Facebook">
                                 <i class="bi bi-facebook"></i>
-                            </a>
-                            </a>
                             </a>
                         </div>
                     </div>
@@ -60,12 +57,16 @@
 
             <div class="col-12 col-xl-9 d-none d-xl-block">
                 <div class="minecraft-card h-100">
-                    <div class="d-flex gap-2 p-3 border-bottom">
+                    <div class="d-flex gap-2 p-3 border-bottom align-items-center">
                         <button class="btn navbtn" data-page="about" data-target="content-display-2">About</button>
-                        <button class="btn navbtn" data-page="portfolio"
-                            data-target="content-display-2">Projects</button>
-                        <button class="btn navbtn" data-page="education"
-                            data-target="content-display-2">Education</button>
+                        <button class="btn navbtn" data-page="portfolio" data-target="content-display-2">Projects</button>
+                        <button class="btn navbtn" data-page="education" data-target="content-display-2">Education</button>
+                        
+                        <div class="ms-auto">
+                            <button id="theme-toggle" class="btn btn-outline-secondary btn-sm rounded-circle">
+                                <i class="bi bi-moon-stars-fill"></i>
+                            </button>
+                        </div>
                     </div>
                     <div id="content-display-2" class="p-4"></div>
                 </div>
@@ -78,7 +79,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-
 </body>
-
 </html>
