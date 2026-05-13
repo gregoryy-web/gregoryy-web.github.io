@@ -2,136 +2,65 @@
 
 :root {
     --transition-speed: 0.3s;
+    --primary-blue: #007bff;
+    --text-main: #2d3436; 
 }
 
 body {
     margin: 0;
-    background: #f0f2f5; 
-    color: #2d3436;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-attachment: fixed;
+    color: var(--text-main);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-}
-
-.minecraft-nav {
-    background: #ffffff;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.navbtn {
-    font-weight: 500;
-    font-size: 14px;
-    background: transparent;
-    color: #636e72;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-}
-
-.navbtn:hover {
-    color: #000;
-    background: #f8f9fa;
-}
-
-.navbtn.active {
-    color: #007bff !important;
-    background: rgba(0, 123, 255, 0.08);
+    min-height: 100vh;
+    transition: background-color var(--transition-speed) ease;
 }
 
 .minecraft-card {
-    background: #ffffff;
-    border: none;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.technical-focus-box {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .minecraft-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
+    letter-spacing: -0.5px;
     color: #1a1a1a;
-    margin-top: 15px;
 }
 
-.minecraft-badge {
-    margin-top: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #007bff;
-    background: rgba(0, 123, 255, 0.1);
-    padding: 6px 18px;
-    border-radius: 50px;
-    display: inline-block;
+.about-text {
+    color: #444;
+    font-weight: 400;
 }
-
-.main-content-box {
-    padding: 30px;
-}
-
-.project-card {
-    border: 1px solid #edf2f7;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
 
 [data-bs-theme="dark"] body {
-    background: #000000 !important;
-    color: #e9ecef;
-}
-
-[data-bs-theme="dark"] .minecraft-card {
-    background: #0f0f0f; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-[data-bs-theme="dark"] .minecraft-nav {
-    background: #0f0f0f;
-    border-bottom: 1px solid #2d3436;
-}
-
-[data-bs-theme="dark"] .navbtn {
-    color: #b2bec3;
-}
-
-[data-bs-theme="dark"] .navbtn:hover {
-    color: #fff;
-    background: #2d3436;
-}
-
-[data-bs-theme="dark"] .minecraft-title {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
     color: #ffffff;
 }
 
-[data-bs-theme="dark"] .minecraft-badge {
-    background: rgba(0, 123, 255, 0.2);
-    color: #3399ff;
+[data-bs-theme="dark"] .minecraft-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
-[data-bs-theme="dark"] .project-card,
-[data-bs-theme="dark"] .bg-white, 
-[data-bs-theme="dark"] .card {
-    background-color: #1a1d21 !important; 
-    color: #e9ecef !important;
-    border-color: #2d3436 !important;
+[data-bs-theme="dark"] .minecraft-title,
+[data-bs-theme="dark"] .about-text {
+    color: #ffffff !important;
 }
 
-[data-bs-theme="dark"] .btn-dark {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
+[data-bs-theme="dark"] .technical-focus-box {
+    background: rgba(255, 255, 255, 0.05);
 }
-
-[data-bs-theme="dark"] .btn-dark:hover {
-    background-color: #d1d1d1 !important;
-}
-
-[data-bs-theme="dark"] .text-muted { color: #a0a0a0 !important; }
-[data-bs-theme="dark"] .text-dark { color: #e9ecef !important; }
-[data-bs-theme="dark"] .border-top { border-top-color: #2d3436 !important; }
