@@ -1,44 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    --transition-speed: 0.3s;
     --primary-blue: #007bff;
-    --primary-blue-hover: #3399ff;
-    --bg-light: #f0f2f5;
+    --primary-blue-hover: #0056b3;
     --card-light: #ffffff;
-    --text-main: #2d3436;
-    --text-muted: #636e72;
-}
-
-body {
-    margin: 0;
-    background: var(--bg-light);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    --text-muted: #6c757d;
+    --transition-speed: 0.3s;
 }
 
 .minecraft-nav {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 50px;
-    margin: 10px 20px;
+    margin: 10px 15px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all var(--transition-speed) ease;
+    z-index: 1050;
 }
 
+.navbtn {
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 8px 16px;
+    margin: 0 2px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.navbtn:hover {
+    color: #000;
+    background: #f8f9fa;
+}
+
+.navbtn.active {
+    color: var(--primary-blue) !important;
+    background: rgba(0, 123, 255, 0.08);
+}
 .minecraft-card {
     background: var(--card-light);
     border: none;
     border-radius: 32px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     transition: transform 0.3s ease, background-color var(--transition-speed) ease;
 }
 
 .main-content-box {
-    padding: 30px;
+    padding: 24px; 
 }
 
 .minecraft-title {
@@ -59,50 +71,22 @@ body {
     display: inline-block;
 }
 
-.navbtn {
-    font-weight: 500;
-    font-size: 14px;
-    background: transparent;
-    color: var(--text-muted);
-    border: none;
-    padding: 8px 24px;
-    margin: 0 5px;
-    border-radius: 20px;
-    transition: all 0.2s ease;
-}
-
-.navbtn:hover {
-    color: #000;
-    background: #f8f9fa;
-}
-
-.navbtn.active {
-    color: var(--primary-blue) !important;
-    background: rgba(0, 123, 255, 0.08);
-}
-
-.project-card {
-    border: 1px solid #edf2f7;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+.minecraft-card a i {
+    transition: color 0.3s ease;
 }
 
 .education-accent {
-    border-left: 5px solid var(--primary-blue);
-    border-radius: 10px;
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 4px;
     padding: 5px 0 5px 20px;
     margin-left: 5px;
     margin-bottom: 1.5rem;
     transition: border-color var(--transition-speed) ease;
 }
 
-.education-accent:hover {
-    border-left-color: var(--primary-blue-hover);
+.education-accent h4 {
+    font-size: 1.1rem;
+    color: inherit;
 }
 
 [data-bs-theme="dark"] body {
@@ -114,6 +98,10 @@ body {
     background: #121212;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .minecraft-title {
+    color: #ffffff;
 }
 
 [data-bs-theme="dark"] .minecraft-nav {
@@ -130,33 +118,22 @@ body {
     background: #2d3436;
 }
 
-[data-bs-theme="dark"] .minecraft-title {
-    color: #ffffff;
+[data-bs-theme="dark"] .navbtn.active {
+    background: rgba(0, 123, 255, 0.15);
 }
 
-[data-bs-theme="dark"] .minecraft-badge {
-    background: rgba(0, 123, 255, 0.2);
-    color: #3399ff;
+[data-bs-theme="dark"] .minecraft-card a.text-dark {
+    color: #ffffff !important;
 }
 
-[data-bs-theme="dark"] .project-card,
-[data-bs-theme="dark"] .bg-white,
-[data-bs-theme="dark"] .card {
-    background-color: #1a1d21 !important;
-    color: #e9ecef !important;
-    border-color: #2d3436 !important;
-}
 
-[data-bs-theme="dark"] .btn-dark {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
+@media (max-width: 576px) {
+    .minecraft-nav {
+        margin: 10px 10px;
+    }
+    
+    .navbtn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
 }
-
-[data-bs-theme="dark"] .btn-dark:hover {
-    background-color: #d1d1d1 !important;
-}
-
-[data-bs-theme="dark"] .text-muted { color: #a0a0a0 !important; }
-[data-bs-theme="dark"] .text-dark { color: #e9ecef !important; }
-[data-bs-theme="dark"] .border-top { border-top-color: #2d3436 !important; }
