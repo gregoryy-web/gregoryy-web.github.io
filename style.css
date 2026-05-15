@@ -1,139 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap');
 
 :root {
-    --primary-blue: #007bff;
-    --primary-blue-hover: #0056b3;
-    --card-light: #ffffff;
-    --text-muted: #6c757d;
-    --transition-speed: 0.3s;
+--primary-blue: #007bff;
+--primary-blue-hover: #0056b3;
+--card-light: #ffffff;
+--text-muted: #6c757d;
+--transition-speed: 0.3s;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+line-height: 1.6;
+}
+
+h1, h2, h3, h4, .minecraft-title, .text-uppercase {
+font-family: 'Montserrat', sans-serif;
+letter-spacing: -0.02em;
 }
 
 .minecraft-nav {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 50px;
-    margin: 10px 15px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all var(--transition-speed) ease;
-    z-index: 1050;
+background: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border-radius: 50px;
+margin: 10px 15px;
+border: 1px solid rgba(0, 0, 0, 0.05);
+transition: all var(--transition-speed) ease;
+z-index: 1050;
 }
 
 .navbtn {
-    font-weight: 500;
-    font-size: 14px;
-    background: transparent;
-    color: var(--text-muted);
-    border: none;
-    padding: 8px 16px;
-    margin: 0 2px;
-    border-radius: 20px;
-    transition: all 0.2s ease;
+font-weight: 500;
+font-size: 14px;
+background: transparent;
+color: var(--text-muted);
+border: none;
+padding: 8px 16px;
+margin: 0 2px;
+border-radius: 20px;
+transition: all 0.2s ease;
 }
 
 .navbtn:hover {
-    color: #000;
-    background: #f8f9fa;
+color: #000;
+background: #f8f9fa;
 }
 
 .navbtn.active {
-    color: var(--primary-blue) !important;
-    background: rgba(0, 123, 255, 0.08);
+color: var(--primary-blue) !important;
+background: rgba(0, 123, 255, 0.08);
 }
+
 .minecraft-card {
-    background: var(--card-light);
-    border: none;
-    border-radius: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    overflow: hidden;
-    transition: transform 0.3s ease, background-color var(--transition-speed) ease;
+background: var(--card-light);
+border: none;
+border-radius: 32px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+overflow: hidden;
+transition: transform 0.3s ease, background-color var(--transition-speed) ease;
 }
 
 .main-content-box {
-    padding: 24px; 
+padding: 24px;
 }
 
 .minecraft-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-top: 15px;
+font-size: 22px;
+font-weight: 800;
+color: #1a1a1a;
+margin-top: 15px;
 }
 
 .minecraft-badge {
-    margin-top: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--primary-blue);
-    background: rgba(0, 123, 255, 0.1);
-    padding: 6px 18px;
-    border-radius: 50px;
-    display: inline-block;
+margin-top: 8px;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+color: var(--primary-blue);
+background: rgba(0, 123, 255, 0.1);
+padding: 6px 18px;
+border-radius: 50px;
+display: inline-block;
 }
 
 .minecraft-card a i {
-    transition: color 0.3s ease;
+transition: color 0.3s ease;
 }
 
 .education-accent {
-    border-left: 4px solid var(--primary-blue);
-    border-radius: 4px;
-    padding: 5px 0 5px 20px;
-    margin-left: 5px;
-    margin-bottom: 1.5rem;
-    transition: border-color var(--transition-speed) ease;
+border-left: 4px solid var(--primary-blue);
+border-radius: 4px;
+padding: 5px 0 5px 20px;
+margin-left: 5px;
+margin-bottom: 1.5rem;
+transition: border-color var(--transition-speed) ease;
 }
 
 .education-accent h4 {
-    font-size: 1.1rem;
-    color: inherit;
+font-size: 1.1rem;
+font-weight: 700;
+color: inherit;
 }
 
 [data-bs-theme="dark"] body {
-    background: #000000 !important;
-    color: #e9ecef;
+background: #000000 !important;
+color: #e9ecef;
 }
 
 [data-bs-theme="dark"] .minecraft-card {
-    background: #121212;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+background: #121212;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 [data-bs-theme="dark"] .minecraft-title {
-    color: #ffffff;
+color: #ffffff;
 }
 
 [data-bs-theme="dark"] .minecraft-nav {
-    background: rgba(18, 18, 18, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+background: rgba(18, 18, 18, 0.8);
+border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 [data-bs-theme="dark"] .navbtn {
-    color: #b2bec3;
+color: #b2bec3;
 }
 
 [data-bs-theme="dark"] .navbtn:hover {
-    color: #fff;
-    background: #2d3436;
+color: #fff;
+background: #2d3436;
 }
 
 [data-bs-theme="dark"] .navbtn.active {
-    background: rgba(0, 123, 255, 0.15);
+background: rgba(0, 123, 255, 0.15);
 }
 
 [data-bs-theme="dark"] .minecraft-card a.text-dark {
-    color: #ffffff !important;
+color: #ffffff !important;
 }
 
-
 @media (max-width: 576px) {
-    .minecraft-nav {
-        margin: 10px 10px;
-    }
-    
-    .navbtn {
-        padding: 6px 10px;
-        font-size: 13px;
-    }
+.minecraft-nav {
+margin: 10px 10px;
+}
+
+.navbtn {
+    padding: 6px 10px;
+    font-size: 13px;
+}
 }
