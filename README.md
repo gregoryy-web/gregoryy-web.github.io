@@ -1,1 +1,1 @@
-For Web Development 
+Repository for School Purposes only.
