@@ -28,6 +28,8 @@ h4,
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 0;
+    /* Added a soft box shadow in light mode */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all var(--transition-speed) ease;
     z-index: 1050;
@@ -59,9 +61,10 @@ h4,
     background: var(--card-light);
     border: none;
     border-radius: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    /* Enhanced light mode shadow for better depth */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
     overflow: hidden;
-    transition: transform 0.3s ease, background-color var(--transition-speed) ease;
+    transition: transform 0.3s ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .main-content-box {
@@ -101,9 +104,10 @@ h4,
     transition: border-color var(--transition-speed) ease;
 }
 
-*{
-transition: 0.3s ease
+* {
+    transition: 0.3s ease;
 }
+
 .education-accent h4 {
     font-size: 1.1rem;
     font-weight: 700;
@@ -127,6 +131,7 @@ transition: 0.3s ease
 
 [data-bs-theme="dark"] .site-nav {
     background: rgba(18, 18, 18, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border-color: rgba(255, 255, 255, 0.1);
 }
 
