@@ -6,20 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const setTheme = (theme) => {
         htmlElement.setAttribute('data-bs-theme', theme);
         localStorage.setItem('theme', theme);
-        
+
         const icon = theme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars-fill';
-        
+
         [themeToggle, themeToggleMobile].forEach(btn => {
-            if(btn) btn.innerHTML = `<i class="bi ${icon}"></i>`;
+            if (btn) btn.innerHTML = `<i class="bi ${icon}"></i>`;
         });
     };
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
 
-
     [themeToggle, themeToggleMobile].forEach(btn => {
-        if(btn) {
+        if (btn) {
             btn.addEventListener('click', () => {
                 const currentTheme = htmlElement.getAttribute('data-bs-theme');
                 setTheme(currentTheme === 'dark' ? 'light' : 'dark');
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navButtons = document.querySelectorAll('.navbtn');
 
     navButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const page = this.getAttribute('data-page');
             const targetId = this.getAttribute('data-target');
             const display = document.getElementById(targetId);
@@ -41,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('active');
             });
             this.classList.add('active');
+
+            const template = document.getElementById(`${page}-template`);
+            if (template) {
+                display.innerHTML = template.innerHTML;
+                return;
+            }
 
             fetch(`./contents/${page}.html`)
                 .then(response => {
@@ -61,6 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const defaultButtons = document.querySelectorAll('[data-page="about"]');
+    const defaultButtons = document.querySelectorAll('[data-page="home"]');
     defaultButtons.forEach(btn => btn.click());
 });
