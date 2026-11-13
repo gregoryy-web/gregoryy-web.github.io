@@ -61,7 +61,6 @@ h4,
     background: var(--card-light);
     border: none;
     border-radius: 32px;
-    /* Enhanced light mode shadow for better depth */
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
     overflow: hidden;
     transition: transform 0.3s ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
@@ -171,5 +170,57 @@ h4,
         top: 0;
         bottom: auto;
         border-radius: 24px;
+    }
+}
+.education-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.education-accent {
+    position: relative;
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 4px;
+    padding: 5px 0 5px 20px;
+    margin-left: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.education-accent h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: inherit;
+}
+
+.education-accent.education-past {
+    border-left-color: #3d8bfd;
+}
+
+.education-year {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    background: rgba(0, 123, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.education-meta {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+@media (hover: hover) {
+    .education-accent:hover {
+        border-left-color: var(--primary-blue-hover);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .education-accent {
+        transition: none;
     }
 }
